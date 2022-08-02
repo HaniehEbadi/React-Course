@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import Product from "./Components/Product/Product";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    products: [
+      { title: "React.js", price: "99 $"},
+      { title: "JavaScript", price: "79 $"}
+    ]
+  }
+
+  clickHandler = () => {
+    this.setState({
+      products: [
+        { title: "React.js", price: "89 $"},
+        { title: "JavaScript", price: "69 $"}
+      ]
+    })
+  }
+
+  render() {
+    return(
+      <div className="container" id="title"> 
+        <h1>shopping App</h1>
+        {this.state.products.map((product) => {
+          return <Product name={product.title} price={product.price} />;
+        })}
+        <button onClick={this.clickHandler}>change price</button>
+      </div>
+    )
+  }
 }
+
+// const App = () => {
+//   return(
+//     <div className="container" id="title"> 
+//       <h1>shoping App</h1>
+//       <Product name="React.js" price="99 $" />
+//       <Product name="JavaScript" price="79 $">
+//         <p>discount is 15 %</p>
+//       </Product>
+//     </div>
+//   );
+// };
 
 export default App;
