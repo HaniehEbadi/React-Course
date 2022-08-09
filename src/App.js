@@ -1,6 +1,7 @@
 import {useState } from "react";
-import Product from "./Components/Product/Product";
 import ProductList from "./Components/Product/ProductList";
+import "./style.css"
+
 // class App extends Component {
 //   state = {
 //     products: [
