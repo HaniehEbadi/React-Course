@@ -1,0 +1,10 @@
+.product {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px 40px;
+    box-shadow: 2000px 1000px 800px rgba(197, 129, 129, 0.065);
+    display: flex;
+    justify-content: space-around;
+    width: 40rem;
+    margin-top: 15px;
+}

@@ -33,20 +33,10 @@ import "./style.css"
 // }
 
 const App = () => {
-  const [products,setProducts] = useState([  ]);
-
-  const clickHandler = () => {
-    setProducts([
-      // { title: "React.js", price: "89 $"},
-      // { title: "JavaScript", price: "69 $"}
-    ]);
-  };
-
   return(
     <div className="container" id="title"> 
       <h1>shopping App</h1>
       <ProductList />
-      <button onClick={clickHandler}>change price</button>
     </div>
   );
 }
