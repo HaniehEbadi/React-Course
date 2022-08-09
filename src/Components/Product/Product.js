@@ -1,7 +1,7 @@
 const Product = (props) => {
   console.log(props)
   return(
-    <div>
+    <div onClick={props.click}>
       <p>{props.name}</p>
       <p>{props.price}</p>
       {props.children}

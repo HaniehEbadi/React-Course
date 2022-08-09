@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import {useState } from "react";
 import Product from "./Components/Product/Product";
 
 // class App extends Component {
@@ -48,11 +48,11 @@ const App = () => {
     <div className="container" id="title"> 
       <h1>shopping App</h1>
       {products.map((product) => {
-        return <Product name={product.title} price={product.price} />;
+        return <Product name={product.title} price={product.price} click={clickHandler}/>;
       })}
       <button onClick={clickHandler}>change price</button>
     </div>
   );
-};
+}
 
 export default App;
