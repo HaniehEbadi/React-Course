@@ -5,6 +5,46 @@
     box-shadow: 2000px 1000px 800px rgba(197, 129, 129, 0.065);
     display: flex;
     justify-content: space-around;
-    width: 40rem;
+    width: 50rem;
     margin-top: 15px;
+    color: #444;
+}
+
+.button {
+    color: #7e22ce;
+    background-color: #fff;
+    border: 1px solid #7e22ce;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.inc {
+    background-color: #f3e8ff;
+}
+
+.value {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #f3e8ff;
+    color: #7e22ce;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.input {
+    outline: none;
+    border: 1px solid #7e22ce;
+    border-radius: 5px;
+    padding: 5px 2px;
+    color: #7e22ce
+}
+
+.input:focus {
+    border: 2px solid #7e22ce;
 }
