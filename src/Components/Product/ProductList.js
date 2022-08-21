@@ -15,6 +15,18 @@ class ProductList extends Component {
     selectedProduct.quantity += 1
     this.setState({products : products})
   }
+  
+  decrementHandler = (id) => {
+    const products = [...this.state.products]
+    const selectedProduct = products.find((p) => p.id === id)
+    if (selectedProduct.quantity === 1) {
+      const filteredProducts = products.filter((p) => p.id !== id);
+      this.setState({products: filteredProducts});
+    } else {
+      selectedProduct.quantity -= 1
+      this.setState({products : products})
+    }
+  }
 
   removeHandler = (id) => {
     const filteredProducts = this.state.products.filter((p) => p.id !== id);
@@ -26,24 +38,30 @@ class ProductList extends Component {
     const selectedProduct = this.state.products.find((p) => p.id === id)
     selectedProduct.title = event.target.value
     this.setState({products})
-    console.log(selectedProduct.title)
+  };
+
+  renderProduct = () => {
+    if (this.state.products.length === 0) 
+      return <div>there is no product in cart</div>;
+
+    return this.state.products.map((product) => {
+      return (
+        <Product 
+          product={product}
+          onIncrement={() => this.incrementHandler(product.id)}
+          onDecrement={() => this.decrementHandler(product.id)}
+          onDelete={() => this.removeHandler(product.id)}
+          onChange={(e) => this.changeHandler(e,product.id)}
+        />
+      );
+    });
   };
 
   render() { 
-    return (
-      <div>
-        {this.state.products.map((product) => {
-        return (
-          <Product 
-            product={product}
-            onIncrement={() => this.incrementHandler(product.id)}
-            onDelete={() => this.removeHandler(product.id)}
-            onChange={(e) => this.changeHandler(e,product.id)}
-          />
-        );
-      })}
-      </div>
-    );
+    return <div>
+      {!this.state.products.length && <div>go to shoppings</div>}
+      {this.renderProduct()}
+      </div>;
   }
 }
  
