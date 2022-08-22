@@ -5,7 +5,8 @@ class ProductList extends Component {
   state = {
     products: [
       { title: "React.js", price: "99 $", id:1, quantity:1},
-      { title: "JavaScript", price: "79 $", id:2, quantity:2}
+      { title: "JavaScript", price: "79 $", id:2, quantity:2},
+      { title: "VSCode", price: "58 $", id:3, quantity:4}
     ]
   };
 
