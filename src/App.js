@@ -13,21 +13,25 @@ class App extends Component {
   };
 
   incrementHandler = (id) => {
+    const index = this.state.products.findIndex((item) => item.id === id)
+    const product = {...this.state.products[index]}
+    product.quantity += 1
     const products = [...this.state.products]
-    const selectedProduct = this.state.products.find((p) => p.id === id)
-    selectedProduct.quantity += 1
-    this.setState({products : products})
+    products[index] = product
+    this.setState({products})
   }
   
   decrementHandler = (id) => {
+    const index = this.state.products.findIndex((item) => item.id === id)
+    const product = {...this.state.products[index]}
     const products = [...this.state.products]
-    const selectedProduct = products.find((p) => p.id === id)
-    if (selectedProduct.quantity === 1) {
+    if (product.quantity === 1) {
       const filteredProducts = products.filter((p) => p.id !== id);
       this.setState({products: filteredProducts});
     } else {
-      selectedProduct.quantity -= 1
-      this.setState({products : products})
+      product.quantity -= 1
+      products[index] = product
+      this.setState({products})
     }
   }
 
@@ -38,10 +42,16 @@ class App extends Component {
 
   changeHandler = (event,id) => {
     const products = [...this.state.products]
-    const selectedProduct = this.state.products.find((p) => p.id === id)
-    selectedProduct.title = event.target.value
+    const index = this.state.products.findIndex((item) => item.id === id) 
+    const product = {...this.state.products[index]}
+    product.title = event.target.value
+    products[index] = product
     this.setState({products})
   };
+
+  componentDidUpdate(prevProps,prevState) {
+    console.log("App.js",prevState)
+  }
 
   render() {
     return(
