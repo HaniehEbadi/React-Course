@@ -1,10 +1,13 @@
-import CounterClass from "./ClassCounter"
-import HookCounter from "./HookCounter"
+//import CounterClass from "./ClassCounter"
+import ClickComponent from "./ClickComponent"
+//import HookCounter from "./HookCounter"
+import HoverComponent from "./HoverComponent"
 
 const App = () => {
   return ( 
     <div>
-      <CounterClass/>
+      <ClickComponent name = "hana"/>
+      <HoverComponent/>
     </div>
   )
 }
