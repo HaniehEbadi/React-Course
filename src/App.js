@@ -2,6 +2,7 @@ import ProductList from "./Components/Product/ProductList";
 import NavBar from "./Components/NavBar/NavBar";
 import "./style.css"
 import React, {Component} from "react";
+import Wrapper from "./Components/hoc/Wrapper";
 
 class App extends Component {
   state = {
@@ -54,8 +55,9 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props)
     return(
-      <div className="container" id="title">
+      <>
         <NavBar totalItems = {this.state.products.filter((p) => p.quantity > 0).length}/>
         <ProductList 
           products={this.state.products}
@@ -64,9 +66,9 @@ class App extends Component {
           onRemove={this.removeHandler}
           onChange={this.changeHandler}
         />
-      </div>
+      </>
     );
   }
 }
 
-export default App;
+export default Wrapper(App,"container");
