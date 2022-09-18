@@ -1,6 +1,10 @@
 import styles from './navBar.module.css'
+import { useProducts } from '../Providers/ProductsProvider'
 
-const NavBar = ({totalItems}) => {
+const NavBar = () => {
+  const products = useProducts()
+  const totalItems = products.filter((p) => p.quantity > 0).length
+
   return (
     <header className={styles.navBar}>
       <h2>fronthooks.ir shopping</h2>
