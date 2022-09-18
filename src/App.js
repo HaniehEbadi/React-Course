@@ -1,74 +1,65 @@
 import ProductList from "./Components/Product/ProductList";
 import NavBar from "./Components/NavBar/NavBar";
 import "./style.css"
-import React, {Component} from "react";
+import React, {useState} from "react";
 import Wrapper from "./Components/hoc/Wrapper";
 
-class App extends Component {
-  state = {
-    products: [
-      { title: "React.js", price: "99 $", id:1, quantity:1},
-      { title: "JavaScript", price: "79 $", id:2, quantity:2},
-      { title: "VSCode", price: "58 $", id:3, quantity:4}
-    ]
-  };
+const App = () => {
+  const [products, setProducts] = useState([
+    { title: "React.js", price: "99 $", id:1, quantity:1},
+    { title: "JavaScript", price: "79 $", id:2, quantity:2},
+    { title: "VSCode", price: "58 $", id:3, quantity:4}
+  ])
 
-  incrementHandler = (id) => {
-    const index = this.state.products.findIndex((item) => item.id === id)
-    const product = {...this.state.products[index]}
+  const incrementHandler = (id) => {
+    const index = products.findIndex((item) => item.id === id)
+    const product = {...products[index]}
     product.quantity += 1
-    const products = [...this.state.products]
-    products[index] = product
-    this.setState({products})
+    const updatedProducts = [...products]
+    updatedProducts[index] = product
+    setProducts(updatedProducts)
   }
   
-  decrementHandler = (id) => {
-    const index = this.state.products.findIndex((item) => item.id === id)
-    const product = {...this.state.products[index]}
+  const decrementHandler = (id) => {
+    const index = products.findIndex((item) => item.id === id)
+    const product = {...products[index]}
     if (product.quantity === 1) {
-      const filteredProducts = this.state.products.filter((p) => p.id !== id);
-      this.setState({products: filteredProducts});
+      const filteredProducts = products.filter((p) => p.id !== id);
+      setProducts(filteredProducts);
     } else {
-      const products = [...this.state.products]
+      const updatedProducts = [...products]
       product.quantity -= 1
-      products[index] = product
-      this.setState({products})
+      updatedProducts[index] = product
+      setProducts(updatedProducts)
     }
   }
 
-  removeHandler = (id) => {
-    const filteredProducts = this.state.products.filter((p) => p.id !== id);
-    this.setState({products: filteredProducts});
+  const removeHandler = (id) => {
+    const filteredProducts = products.filter((p) => p.id !== id);
+    setProducts(filteredProducts);
   };
 
-  changeHandler = (event,id) => {
-    const products = [...this.state.products]
-    const index = this.state.products.findIndex((item) => item.id === id) 
-    const product = {...this.state.products[index]}
+  const changeHandler = (event,id) => {
+    const updatedProducts = [...products]
+    const index = products.findIndex((item) => item.id === id) 
+    const product = {...products[index]}
     product.title = event.target.value
-    products[index] = product
-    this.setState({products})
+    updatedProducts[index] = product
+    setProducts(updatedProducts)
   };
 
-  componentDidUpdate(prevProps,prevState) {
-    console.log("App.js",prevState)
-  }
-
-  render() {
-    console.log(this.props)
-    return(
-      <>
-        <NavBar totalItems = {this.state.products.filter((p) => p.quantity > 0).length}/>
-        <ProductList 
-          products={this.state.products}
-          onIncrement={this.incrementHandler}
-          onDecrement={this.decrementHandler}
-          onRemove={this.removeHandler}
-          onChange={this.changeHandler}
-        />
-      </>
-    );
-  }
+  return ( 
+    <>
+      <NavBar totalItems = {products.filter((p) => p.quantity > 0).length}/>
+      <ProductList 
+        products={products}
+        onIncrement={incrementHandler}
+        onDecrement={decrementHandler}
+        onRemove={removeHandler}
+        onChange={changeHandler}
+      />
+    </>
+  );
 }
-
+ 
 export default Wrapper(App,"container");
