@@ -7,7 +7,7 @@ const Product = ({product,onChange,onIncrement,onDecrement,onDelete}) => {
       <p>product name : {product.title} course</p>
       <p>product price : {product.price}</p>
       <span className={styles.value}>{product.quantity}</span>
-      <input className={styles.input} type="text" onChange={onChange} value={product.title}/>
+      {/* <input className={styles.input} type="text" onChange={onChange} value={product.title}/> */}
       <button onClick={onIncrement} className={`${styles.button} ${styles.inc}`}>+</button>
       <button 
         onClick={onDecrement} 

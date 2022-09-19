@@ -4,20 +4,19 @@ import Product from './Product';
 
 const ProductList = () => {
   const products = useProducts()
-  const {removeHandler,incrementHandler,changeHandler,decrementHandler} = useProductsActions();
+  const dispatch = useProductsActions();
 
   const renderProduct = () => {
-    if (products.length === 0) 
-      return <div>there is no product in cart</div>;
+    if (products.length === 0) return <div>there is no product in cart</div>;
 
     return products.map((product) => {
       return (
         <Product 
           product={product}
-          onIncrement={() => incrementHandler(product.id)}
-          onDecrement={() => decrementHandler(product.id)}
-          onDelete={() => removeHandler(product.id)}
-          onChange={(e) => changeHandler(e,product.id)}
+          onIncrement={() => dispatch({type: "increment", id: product.id})}
+          onDecrement={() => dispatch({type: "decrement", id: product.id})}
+          onDelete={() => dispatch({type: "remove", id: product.id})}
+          onChange={(e) => dispatch({type: "edit", id: product.id, event: e})}
         />
       );
     });
